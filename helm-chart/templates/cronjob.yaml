@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-job-{{ .Release.Name }}
+spec:
+  schedule: {{ .Values.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cron-job-container
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              args:
+                - /bin/sh
+                - -c
+                - "echo Running tested Azure ACR-based CronJob!"
+          restartPolicy: OnFailure

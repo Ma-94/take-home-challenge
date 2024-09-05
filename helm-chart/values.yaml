@@ -1,0 +1,4 @@
+image:
+  repository: devopsacr.azurecr.io/cron-job
+  tag: "latest"
+schedule: "*/5 * * * *"

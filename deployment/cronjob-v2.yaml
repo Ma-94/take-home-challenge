@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-job-v2
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: cron-job-container
+              image: devopsacr.azurecr.io/cron-job:v2
+              args:
+                - /bin/sh
+                - -c
+                - "echo Running CronJob v2 from Azure ACR!"
+          restartPolicy: OnFailure
